@@ -35,7 +35,7 @@ public class ExerciseDbManager {
         quindi se tutto va bene il numero delle colonne elimi
          */
         return db.delete(Person.TABLE_NAME, Person._ID + " = ? ",
-                new String[] String.valueOf(person.getId())) > 0;
+                new String[]{String.valueOf(person.getId())}) > 0;
     }
 
     public List<Person> getPeople() {
