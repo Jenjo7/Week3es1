@@ -22,19 +22,18 @@ public class Person implements BaseColumns {
     private int age;
     private String email;
 
-    public Person(final String name, final int id, final String surname, final String email, final int age) {
+    public Person(final String name, final String surname, final String email, final int age) {
         this.name = name;
-        this.id = id;
         this.surname = surname;
         this.email = email;
         this.age = age;
     }
 
     public Person(Cursor cursor) {
-        this.name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
-        this.surname = cursor.getString(cursor.getColumnIndex(COLUMN_SURNAME));
-        this.age = cursor.getInt(cursor.getColumnIndex(COLUMN_AGE));
-        this.email = cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL));
+        //Chiamo il costruttore sopra, con i parametri del cursor
+        this(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)), cursor.getString(cursor.getColumnIndex(COLUMN_SURNAME)),
+                cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL)), cursor.getInt(cursor.getColumnIndex(COLUMN_AGE)));
+        this.id = cursor.getInt(cursor.getColumnIndex(_ID));
     }
 
     public ContentValues getContentValues() {
