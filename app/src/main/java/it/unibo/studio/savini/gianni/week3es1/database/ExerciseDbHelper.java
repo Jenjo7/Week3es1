@@ -11,7 +11,7 @@ import it.unibo.studio.savini.gianni.week3es1.Person;
  */
 public class ExerciseDbHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "exercise.db";
+    private static final String DATABASE_NAME = "exercises.db";
     private static final int DATABASE_VERSION = 1;
 
 
@@ -25,7 +25,7 @@ public class ExerciseDbHelper extends SQLiteOpenHelper {
             Person.COLUMN_NAME + " TEXT, " +
             Person.COLUMN_SURNAME + " TEXT, " +
             Person.COLUMN_AGE + " INTEGER, " +
-            Person.COLUMN_EMAIL + " TEXT)";
+            Person.COLUMN_EMAIL + " TEXT )";
 
 
     @Override

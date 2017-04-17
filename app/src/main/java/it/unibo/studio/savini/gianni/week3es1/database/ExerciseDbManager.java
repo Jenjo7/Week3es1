@@ -51,7 +51,7 @@ public class ExerciseDbManager {
 
 
         try {
-            String query = "SELECT * FROM " + Person.TABLE_NAME + "ORDER BY " + Person.COLUMN_NAME + " ASC";
+            String query = "SELECT * FROM " + Person.TABLE_NAME + " ORDER BY " + Person.COLUMN_NAME + " ASC";
             //
             cursor = db.rawQuery(query, null);
             while (cursor.moveToNext()) {

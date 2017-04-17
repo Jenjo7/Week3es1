@@ -50,7 +50,7 @@ public class ListFragment extends Fragment {
 
         lsvPeople = (ListView) view.findViewById(R.id.lsv_people);
         textView = (TextView) view.findViewById(R.id.txv_placeholder);
-        btnAddPerson = (Button) view.findViewById(R.id.btn_add_person);
+        btnAddPerson = (Button) view.findViewById(R.id.btn_add);
         btnAddPerson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,6 +65,7 @@ public class ListFragment extends Fragment {
 
     private void populateListView() {
         List<Person> people = dbManager.getPeople();
+        System.out.println(people);
         /**
          * Inizializzo l'adapter con i seguenti parametri;:
          * - Riferimento all'activity corrente
@@ -89,6 +90,7 @@ public class ListFragment extends Fragment {
     public void updateListView() {
         //Ottengo la lista di persone
         List<Person> people = dbManager.getPeople();
+        System.out.println(people);
         /**
          * Ultima cosa, controllo se sono presenti persone nel database;
          * se non ci sono persone, rendo visibile la TextView (ove vi è scritto "Non sono presenti persone nel database")

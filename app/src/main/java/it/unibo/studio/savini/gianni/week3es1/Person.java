@@ -14,7 +14,7 @@ public class Person implements BaseColumns {
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_SURNAME = "surname";
     public static final String COLUMN_AGE = "age";
-    public static final String COLUMN_EMAIL = "email";
+    public static final String COLUMN_EMAIL = "e_mail";
 
     private int id;
     private String name;
@@ -63,5 +63,10 @@ public class Person implements BaseColumns {
 
     public String getEmail() {
         return email;
+    }
+
+    @Override
+    public String toString() {
+        return surname + " " + name + " - " + String.valueOf(age) + " - " + email;
     }
 }
