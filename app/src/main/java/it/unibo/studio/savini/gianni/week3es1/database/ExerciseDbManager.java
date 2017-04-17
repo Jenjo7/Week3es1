@@ -1,10 +1,8 @@
 package it.unibo.studio.savini.gianni.week3es1.database;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +28,14 @@ public class ExerciseDbManager {
 
     public boolean updatePerson(Person person) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        /*
+
+        return db.update(Person.TABLE_NAME, person.getContentValues(), Person._ID + " = ? ",
+                new String[]{String.valueOf(person.getId())}) > 0;
+    }
+
+    public boolean deletePerson(Person person) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+         /*
         db.delete ritorna il numero di collonne che sono state cancellate...
         quindi se tutto va bene il numero delle colonne elimi
          */
@@ -59,6 +64,7 @@ public class ExerciseDbManager {
             if(cursor != null) {
                 cursor.close();
             }
+            db.close();
         }
 
         return people;

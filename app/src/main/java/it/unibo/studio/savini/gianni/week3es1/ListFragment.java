@@ -2,7 +2,6 @@ package it.unibo.studio.savini.gianni.week3es1;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +31,7 @@ public class ListFragment extends Fragment {
 
     }
 
-    public ListFragment newInstance() {
+    public static ListFragment newInstance() {
         return new ListFragment();
     }
 
@@ -65,26 +64,29 @@ public class ListFragment extends Fragment {
     }
 
     private void populateListView() {
-        List<Person> people = checkTextView();
+        List<Person> people = dbManager.getPeople();
         /**
          * Inizializzo l'adapter con i seguenti parametri;:
          * - Riferimento all'activity corrente
          * - un intero che specifica il tipo di lista (funzionalità ottenuta da android)
          * - la lista di persone.
          */
-        adapter = new ArrayAdapter<Person>(getActivity(), android.R.layout.simple_list_item_1, people);
+        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, people);
         //Setto la lista con l'adpter
         lsvPeople.setAdapter(adapter);
+        /**
+         * Ultima cosa, controllo se sono presenti persone nel database;
+         * se non ci sono persone, rendo visibile la TextView (ove vi è scritto "Non sono presenti persone nel database")
+         * altimenti, se sono presenti persone, la rendo invisibile
+         */
+        if(people.size() > 0) {
+            textView.setVisibility(View.INVISIBLE);
+        } else {
+            textView.setVisibility(View.VISIBLE);
+        }
     }
 
     public void updateListView() {
-        List<Person> people = checkTextView();
-        adapter.clear();
-        adapter.addAll(people);
-        adapter.notifyDataSetChanged();
-    }
-
-    private List<Person> checkTextView() {
         //Ottengo la lista di persone
         List<Person> people = dbManager.getPeople();
         /**
@@ -92,15 +94,17 @@ public class ListFragment extends Fragment {
          * se non ci sono persone, rendo visibile la TextView (ove vi è scritto "Non sono presenti persone nel database")
          * altimenti, se sono presenti persone, la rendo invisibile
          */
+        adapter.clear();
+        adapter.addAll(people);
+        adapter.notifyDataSetChanged();
+
         if(people.size() > 0) {
-            textView.setVisibility(View.VISIBLE);
-        } else {
             textView.setVisibility(View.INVISIBLE);
+        } else {
+            textView.setVisibility(View.VISIBLE);
         }
 
-        return people;
     }
-
     /**
      *  Soliti override onAttach e onDetach
      * @param context: Riferimento all'activity chiamante

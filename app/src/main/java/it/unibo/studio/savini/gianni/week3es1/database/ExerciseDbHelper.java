@@ -3,7 +3,6 @@ package it.unibo.studio.savini.gianni.week3es1.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteTransactionListener;
 
 import it.unibo.studio.savini.gianni.week3es1.Person;
 
@@ -20,13 +19,13 @@ public class ExerciseDbHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    public static final String CREATE_TABLE_PEOPLE = "CREATE_TABLE "
+    public static final String CREATE_TABLE_PEOPLE = "CREATE TABLE "
             + Person.TABLE_NAME +" (" +
-            Person._ID + "INTEGER PRIMARY KEY, " +
-            Person.COLUMN_NAME + "TEXT, " +
-            Person.COLUMN_SURNAME + "TEXT, " +
-            Person.COLUMN_AGE + "INTEGER, " +
-            Person.COLUMN_EMAIL + "TEXT, ";
+            Person._ID + " INTEGER PRIMARY KEY, " +
+            Person.COLUMN_NAME + " TEXT, " +
+            Person.COLUMN_SURNAME + " TEXT, " +
+            Person.COLUMN_AGE + " INTEGER, " +
+            Person.COLUMN_EMAIL + " TEXT)";
 
 
     @Override
